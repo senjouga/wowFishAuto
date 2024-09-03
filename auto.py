@@ -1,5 +1,5 @@
 import time
-from utils.audio import listen
+from utils.audio import listen, randomWait, randomIntNum
 from utils.action import fishing, jump, snatch
 import psutil
 import numpy as np
@@ -8,7 +8,7 @@ dev = False
 checkPass = False
 silentVolume=10 # below this volume keep fishing
 gotVolume=1800 # higher than this volume hook a fish
-maxCatch=500 # catch enough fish
+maxCatch=randomIntNum(100, 200) # catch enough fish
 def check_process():
     print('Checking WoW is running')
     wow_process_names = ["Wow.exe"]
@@ -45,17 +45,17 @@ def main():
         if not listen(silentVolume=silentVolume, gotVolume=gotVolume):
             print('If we didn\' hear anything, lets try againf')
             jump()
-            time.sleep(3)
+            randomWait(0, 3)
             continue
         else:
             print('I guess we snatched something')
             snatch()
-            time.sleep(3)
+            randomWait(1, 8)
         catched += 1
         print(f"current catched: {catched}")
         if catched == maxCatch:
             break
-        time.sleep(3)
+        randomWait(3, 11)
     print('catched ' + str(catched))
     logout()
 

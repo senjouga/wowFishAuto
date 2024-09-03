@@ -2,7 +2,22 @@ import pyaudio
 import time
 import numpy as np
 
+import random
+
 waitSilent=False
+
+def randomFloatNum (start, end):
+	return random.uniform(start, end)
+
+def randomIntNum (start, end):
+	return random.randint(start, end)
+
+def randomWait(startNum=1, endNum=5):
+	random_num = randomFloatNum(startNum, endNum)
+	print(f'wait {random_num}...')
+	time.sleep(random_num)
+	return
+
 
 def get_volume(data):
     """计算音频数据的音量"""
