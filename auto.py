@@ -6,7 +6,7 @@ import numpy as np
 
 dev = False
 checkPass = False
-silentVolume=10 # below this volume keep fishing
+silentVolume=1000 # below this volume keep fishing
 gotVolume=1800 # higher than this volume hook a fish
 maxCatch=randomIntNum(100, 200) # catch enough fish
 def check_process():
@@ -42,20 +42,22 @@ def main():
     while not dev:
         tries += 1
         fishing()
+        randomWait(2,  3)
         if not listen(silentVolume=silentVolume, gotVolume=gotVolume):
             print('If we didn\' hear anything, lets try againf')
+            randomWait(1, 3)
             jump()
-            randomWait(0, 3)
+            randomWait(1, 3)
             continue
         else:
             print('I guess we snatched something')
             snatch()
-            randomWait(1, 8)
+            randomWait(0, 2)
         catched += 1
-        print(f"current catched: {catched}")
+        print(f"current catched: {catched}/{maxCatch}")
         if catched == maxCatch:
             break
-        randomWait(3, 11)
+        randomWait(2, 5)
     print('catched ' + str(catched))
     logout()
 

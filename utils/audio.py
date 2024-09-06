@@ -24,7 +24,7 @@ def get_volume(data):
     audio_data = np.frombuffer(data, dtype=np.int16)
     return np.max(np.abs(audio_data))
 
-def listen(silentVolume=10,gotVolume=1800):
+def listen(silentVolume=760,gotVolume=1800):
 	global waitSilent
 	print('Well, now we are listening for loud sounds...')
 	CHUNK = 1024  # CHUNKS of bytes to read each time from mic
